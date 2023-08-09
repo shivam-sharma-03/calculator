@@ -33,16 +33,8 @@ Array.from(buttons).forEach((button) => {
 		}
 
 		if (e.target.innerHTML == '=') {
-			 isEqual = true;
-			addToHistory(e.target.innerHTML)
-			try {
-				string = eval(string);
-				addToHistory(string + '\n')
-			} catch {
-				string = "Error";
-			}
-			string=string.replace("⌫","");
-			input.value = string;
+			string=eval(string);
+			input.value=string;
 		} else if (e.target.innerHTML == 'C') {
 			addToHistory(e.target.innerHTML)
 			string = '';
@@ -118,21 +110,19 @@ body.addEventListener('keyup',
 			}
 
 		}
-	if(history == ''){
-    	document.getElementById('tagHistory').style.display = "none";
-		}else{
-		    document.getElementById('tagHistory').style.display = "block";
-		}
+	
 	}
 );
 
 
 function addToHistory(value) {
 	if ( value == 'C' ){
-		history = ''	
+		history = '';
+		input.value=history;	
 	}else{
 	    history += value;
+		input.value=history;
 	}
-    document.getElementById('history').innerText = history;
+    document.getElementById('history').innerText =input.value;
 }
 
